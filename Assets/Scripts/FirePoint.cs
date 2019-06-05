@@ -16,7 +16,7 @@ public class FirePoint : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1")){
+        if(Input.GetButtonDown("Fire1") && playerCtrl.m_Grounded){
             playerCtrl.animControl.SetTrigger("fire");
             Shoot();
         }    
