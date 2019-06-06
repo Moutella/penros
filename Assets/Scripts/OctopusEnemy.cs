@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OctopusEnemy : MonoBehaviour
+public class OctopusEnemy : Enemy
 {
     // Start is called before the first frame update
     void Start()
