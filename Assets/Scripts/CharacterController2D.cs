@@ -129,9 +129,9 @@ public class CharacterController2D : MonoBehaviour
                 dashParticles.enableEmission = false;
                 const int MAX_POSITIONS = 100;
                 Vector3[] TrailRecorded = new Vector3[MAX_POSITIONS];
-                Debug.Log(dashTrail.GetPositions(TrailRecorded));
-                Debug.Log(dashTrail.startWidth);
-                Debug.Log(dashTrail.endWidth);
+                //Debug.Log(dashTrail.GetPositions(TrailRecorded));
+                //Debug.Log(dashTrail.startWidth);
+                //Debug.Log(dashTrail.endWidth);
                 dashTrail.emitting = false;
                 m_Dash = false;
                 
