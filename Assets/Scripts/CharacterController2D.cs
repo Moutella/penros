@@ -8,7 +8,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float m_DashForce = 100000f;                       // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-    [Range(1, 20)] [SerializeField] private float m_Velocidade = 5;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [Range(0, 2)] [SerializeField] private float m_Velocidade = 1;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
@@ -39,7 +39,8 @@ public class CharacterController2D : MonoBehaviour
     private bool m_Pulou = false;
     private bool m_Dash = false;
     private float dashTimer;
-    private List<Vector3> dashvertexs; 
+    private List<Vector3> dashvertexs;
+    public Joystick controleMobile;
 
     private float m_special;  
 
@@ -64,21 +65,36 @@ public class CharacterController2D : MonoBehaviour
 
     void Update()
     {
-        float movimento = Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump") & m_Grounded)
+        #if UNITY_EDITOR
+            float movimento = Input.GetAxisRaw("Horizontal");
+        #endif
+
+
+        #if UNITY_ANDROID
+        if(controleMobile.Horizontal >= .3f)
+            {
+            movimento = 1;
+            }
+        else if (controleMobile.Horizontal <= -0.3f)
         {
-            animControl.SetTrigger("pulou");
-            m_Pulou = true;
+            movimento = -1;
         }
-        else
-        {
-            m_Pulou = false;
-          //  m_Dash = false;
-        }
+                
+        #endif
+        //if (Input.GetButtonDown("Jump") & m_Grounded)
+        //{
+        //    animControl.SetTrigger("pulou");
+        //    m_Pulou = true;
+        //}
+        //else
+        //{
+        //    m_Pulou = false;
+        //  //  m_Dash = false;
+        //}
         
         
         
-        if(Input.GetButtonDown("Fire2") && !(this.m_special < 1)) // to pensando se a condição de dash vai ser o specil full ou o tamanho
+        if(Input.GetKeyDown(KeyCode.O) && !(this.m_special < 1)) // to pensando se a condição de dash vai ser o specil full ou o tamanho
         {                                                         //se for o full ele só pode dar N dashes e depois não pode fazer nenhum até encher tudo
             Vector2 direcaoDash = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             animControl.SetTrigger("dash");
@@ -170,7 +186,14 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-
+    public void pulo()
+    {
+        if (m_Grounded)
+        {
+            animControl.SetTrigger("pulou");
+            m_Pulou = true;
+        }
+    }
 
     // funções auxiliares
 
@@ -243,6 +266,7 @@ public class CharacterController2D : MonoBehaviour
             // Add a vertical force to the player.
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            m_Pulou = false;
         }
 
     }

@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 241d431425faa7f44bf88626aa25e5a4
+guid: c04f2d96fc3474549b994269ec0abdf6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: props_0
-    21300002: props_1
-    21300004: props_2
-    21300006: props_3
-    21300008: props_4
-    21300010: props_5
-    21300012: props_6
-    21300014: props_7
-    21300016: props_8
-    21300018: props_9
+    21300000: props2_0
+    21300002: props2_1
+    21300004: props2_2
+    21300006: props2_3
+    21300008: props2_4
+    21300010: props2_5
+    21300012: props2_6
+    21300014: props2_7
+    21300016: props2_8
+    21300018: props2_9
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: props_0
+      name: props2_0
       rect:
         serializedVersion: 2
         x: 49
@@ -130,13 +130,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b79b9e0f750564499aacc687b93975d
+      spriteID: 991c513864ced5a48bbfdfb59ccb16d6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_1
+      name: props2_1
       rect:
         serializedVersion: 2
         x: 177
@@ -150,13 +150,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ed478f08900ad94e92ff08759f8f40e
+      spriteID: c560b92c961019042ab22e1f057a63d9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_2
+      name: props2_2
       rect:
         serializedVersion: 2
         x: 432
@@ -170,13 +170,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02ce20f3e4db12a4995630dfc8a72189
+      spriteID: dafa61a932c22f64cb7096b7fad10405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_3
+      name: props2_3
       rect:
         serializedVersion: 2
         x: 596
@@ -190,13 +190,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ed10d117cbeaf04da3a8dddbb156979
+      spriteID: 8aaf43bcccdbb3f4b841c4d3a58d6c36
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_4
+      name: props2_4
       rect:
         serializedVersion: 2
         x: 752
@@ -210,13 +210,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 373372e216e5660448edd01ec511d046
+      spriteID: ca0d93c74054f3347b2f06d4b2cfaa64
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_5
+      name: props2_5
       rect:
         serializedVersion: 2
         x: 33
@@ -230,13 +230,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f930016f2d1e0d54eb5fa8ebe43818db
+      spriteID: 68ad7173f09a61240a4af65dd6b264f6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_6
+      name: props2_6
       rect:
         serializedVersion: 2
         x: 176
@@ -250,13 +250,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01806eac1116816409b7d05eaba6a9f8
+      spriteID: aac2f6d56c4c10240b22c98abc30aa57
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_7
+      name: props2_7
       rect:
         serializedVersion: 2
         x: 434
@@ -270,13 +270,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa970ce680e6fc745a3b77970b9410c3
+      spriteID: 0583f46571dd7604cb615c70a78fc479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_8
+      name: props2_8
       rect:
         serializedVersion: 2
         x: 514
@@ -290,13 +290,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9c76195c4649e749bef11c123b90c38
+      spriteID: 87202d38581c74e468e6d59f3302f3bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: props_9
+      name: props2_9
       rect:
         serializedVersion: 2
         x: 614
@@ -310,7 +310,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 095088840c7205447a4e93c85292335d
+      spriteID: a5e4c72b2d925104099d1a10c7c366f3
       vertices: []
       indices: 
       edges: []
@@ -318,7 +318,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 089d9ecca6776a5459ca488c4ad53e33
+    spriteID: c2fdeafe088d0dc44878b3a0fec6e3b4
     vertices: []
     indices: 
     edges: []
