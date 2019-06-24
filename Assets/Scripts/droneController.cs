@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class droneController : MonoBehaviour
 {
-    public Transform desiredPos;
+    public Transform currentDesiredPos;
     public float droneVelo;
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,6 @@ public class droneController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, desiredPos.position, droneVelo);
+        transform.position = Vector3.Lerp(transform.position, currentDesiredPos.position, droneVelo);
     }
 }

@@ -9,7 +9,7 @@ public class FirePoint : MonoBehaviour
     public GameObject bulletPrefab;
     private CharacterController2D playerCtrl;
     void Awake(){
-        playerCtrl = transform.root.GetComponent<CharacterController2D>();
+        playerCtrl = transform.parent.GetComponent<CharacterController2D>();
 
     }
 
