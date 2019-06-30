@@ -32,7 +32,7 @@ public class CharacterController2D : MonoBehaviour
     [Header("Variaveis de Pulo")]
     public float fallMult = 2.5f;
     public float lowJumpMultiplier = 2f;
-    public float grabMult = .5f;
+    public float grabMult = .1f;
     public float m_JumpForce = 9.8f;      // Amount of force added when the player jumps.                      
 
     // checks (booleanos)
@@ -50,7 +50,7 @@ public class CharacterController2D : MonoBehaviour
     public bool onWall;
     public bool onRightWall;
     public bool onLeftWall;
-    public bool wallSlide;
+    public bool wallSlide = false;
     public bool wallGrab;
 
     // dash variaveis
@@ -62,6 +62,7 @@ public class CharacterController2D : MonoBehaviour
     //public float m_DashForce = 700f; 
     public float m_DashConstSpeed = 45f;
     public float maxDash = 35f; 
+    public float dashRecharge = 0.1f;
 
     // variaveis de especial
     [Space]
@@ -172,7 +173,7 @@ public class CharacterController2D : MonoBehaviour
         animControl.SetBool("isWall", coll.onWall);
         
         //tentando fazer o flip que era para se feito na WallSlide!
-        if(coll.onWall & !coll.onGround){
+        if(coll.onWall & !coll.onGround & wallSlide){
             Flip();
         }
         //animControl.SetInteger("wall1",coll.wallSide);
@@ -217,8 +218,8 @@ public class CharacterController2D : MonoBehaviour
 
             // se esta grudado em alguma parede (na parede e no ar e indo em direção a ela)
             if(coll.onWall && !coll.onGround && Input.GetAxisRaw("Horizontal") != 0){   
-                        wallSlide = true;
                         WallSlide();
+                        wallSlide = true;
                 
             }
             //SENAO se aplica a dinamica normal de pulo (caindo ou pulando, podendo estar na parede)
@@ -313,7 +314,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void specialrecharge(){
         if(this.m_special < maxDash){
-            this.m_special += 0.1f;
+            this.m_special += dashRecharge;
         }
         if(this.m_special >= 25){
             this.m_DashCool = false;
@@ -360,8 +361,19 @@ public class CharacterController2D : MonoBehaviour
 
         //parede deve "empurrar de volta" para nao ter problema de ficar preso na parede
         float push = empurrandoParede ? 0 : m_Rigidbody2D.velocity.x;
-
-        m_Rigidbody2D.velocity = new Vector2(push, -grabMult);
+        //float y = (wallSlide)? m_Rigidbody2D.velocity.y : 0;
+        
+        m_Rigidbody2D.velocity = new Vector2(push,  -grabMult);
+        
+        //teste
+        /*
+        Debug.Log(Time.deltaTime);
+        Debug.Log(Vector2.up);
+        Debug.Log(Physics2D.gravity.y);   
+        Vector2 resultante = Vector2.up * Physics2D.gravity.y*(grabMult)*Time.deltaTime;
+        Debug.Log(resultante);
+        m_Rigidbody2D.velocity += resultante;
+        */
     }
 
     /*

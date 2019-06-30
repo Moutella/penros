@@ -5130,8 +5130,8 @@ MonoBehaviour:
   m_FacingRight: 1
   animControl: {fileID: 0}
   fallMult: 2.5
-  lowJumpMultiplier: 2
-  grabMult: 0.5
+  lowJumpMultiplier: 1.19
+  grabMult: 0.8
   m_JumpForce: 9.8
   m_Pulou: 0
   m_Dash: 0
@@ -5146,6 +5146,7 @@ MonoBehaviour:
   wallGrab: 0
   m_DashConstSpeed: 18
   maxDash: 30
+  dashRecharge: 0.1
 --- !u!50 &5280828172528136280
 Rigidbody2D:
   serializedVersion: 4
