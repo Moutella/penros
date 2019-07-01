@@ -8,6 +8,8 @@ TagManager:
   - Trail
   - Fire
   - Bullet
+  - Trap
+  - Gate
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Trap
   - 
   - 
   - 
