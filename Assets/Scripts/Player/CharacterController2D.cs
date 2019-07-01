@@ -307,9 +307,9 @@ public class CharacterController2D : MonoBehaviour
 
     public void dash(float x,float y)
     {
-
+        
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.velocity = new Vector2(x,y).normalized * m_DashConstSpeed;
+        m_Rigidbody2D.velocity += new Vector2(x,y).normalized * m_DashConstSpeed;
     }
 
     public void specialrecharge(){

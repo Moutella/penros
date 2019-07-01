@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Trap
   - Gate
+  - Penro
   layers:
   - Default
   - TransparentFX

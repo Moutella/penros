@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1338094677563787012, guid: 01fcfe3752123334f887a859f5217834,
     type: 3}
+  podeAtirar: 1
 --- !u!1 &5280828171178024399
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,7 +5147,7 @@ MonoBehaviour:
   wallGrab: 0
   m_DashConstSpeed: 18
   maxDash: 30
-  dashRecharge: 0.1
+  dashRecharge: 0.125
 --- !u!50 &5280828172528136280
 Rigidbody2D:
   serializedVersion: 4

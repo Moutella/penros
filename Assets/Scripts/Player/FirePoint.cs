@@ -9,6 +9,7 @@ public class FirePoint : MonoBehaviour
     public GameObject bulletPrefab;
     private CharacterController2D playerCtrl;
     private int bulletCounter;
+    public bool podeAtirar = true;
     void Awake(){
         playerCtrl = transform.parent.GetComponent<CharacterController2D>();
     }
@@ -16,15 +17,25 @@ public class FirePoint : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && bulletCounter < 3){
+        
+        podeAtirar = (bulletCounter < 3)? true : false;
+
+        if(Input.GetButtonDown("Fire1") && podeAtirar){
             playerCtrl.animControl.SetTrigger("fire");
             bulletCounter++;
             Shoot();
-            bulletCounter--;
+            
+            
         }    
+        RecerragaTiro();
     }
 
-
+    public void RecerragaTiro(){
+        if(!podeAtirar)
+        {
+            bulletCounter--;
+        }
+    }
     void Shoot(){
         Instantiate(bulletPrefab,transform.position,transform.rotation);
     }
