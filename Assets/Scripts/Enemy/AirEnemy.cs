@@ -15,4 +15,13 @@ public class AirEnemy : Enemy
     {
         
     }
+    // tentando fazer ele colidir com a TRAIL!
+    void OnTriggerEnter2D(Collider2D other){
+    	Debug.Log(other.name);
+    	
+    }
+
+    void OnTriggerStay2D(Collider2D other){
+    	Debug.Log(other.name);
+    }
 }
