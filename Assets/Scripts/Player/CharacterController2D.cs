@@ -18,6 +18,7 @@ public class CharacterController2D : MonoBehaviour
     private ParticleSystem dashParticles = null;
     private TrailRenderer dashTrail = null;
     private Collision coll;
+    public GameObject trailpointprefab;
 
     [Header("Variaveis de posição")]
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -194,7 +195,7 @@ public class CharacterController2D : MonoBehaviour
         // esta no modo dash  e nao esta no "modo infinito"
         if(m_Dash && !dashInfinity){
             m_special -= 0.5f;
-            Debug.Log("ESPECIAL:>"+m_special);
+            //Debug.Log("ESPECIAL:>"+m_special);
             if(m_special <= 0 ){
                 m_special = 0;
                 m_Dash = false;
@@ -307,9 +308,11 @@ public class CharacterController2D : MonoBehaviour
 
     public void dash(float x,float y)
     {
-        
+
+        Instantiate(trailpointprefab,transform.position,transform.rotation);
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.velocity += new Vector2(x,y).normalized * m_DashConstSpeed;
+        m_Rigidbody2D.velocity = new Vector2(x,y).normalized * m_DashConstSpeed;
+        
     }
 
     public void specialrecharge(){
