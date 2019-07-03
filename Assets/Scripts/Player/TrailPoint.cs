@@ -16,8 +16,16 @@ public class TrailPoint : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
 
         
-        if(other.name.Equals("Inimigo-Octopus") && other.GetType() != typeof(CircleCollider2D)){
+        if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D)){
         	Debug.Log("purificado");
+        	Enemy enemy = other.GetComponent<Enemy>();
+        	if(enemy != null){
+        		//##ATIVA EFEITO
+        		enemy.Dano(100);
+        	}
+        }
+        if(other.tag.Equals("Beta") && other.GetType() != typeof(CircleCollider2D)){
+        	//Enemy enemy = other.GetComponent<Enemy>();
         }
 
 
@@ -27,19 +35,6 @@ public class TrailPoint : MonoBehaviour
         	//Destroy(other);
         	Destroy(gameObject);
         }
-
-        /*
-        if(other.GetType() != typeof(CircleCollider2D)){
-            Enemy enemy = other.GetComponent<Enemy>(); // as vezes não seria melhor por o trigger no inimigo ?
-                                                   //se bem que a bala é trigger ...
-            // note que os inimigos vao ter 2 colliders triggers (campo de visão e o hitbox normal)
-            if(enemy != null){
-                enemy.Dano(damage);
-
-            }
-            Destroy(gameObject);
-        }
-        */
         
     }
     void OnTriggerStay2D(Collider2D other){
