@@ -43,7 +43,7 @@ public class droneController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("ENTROU NUM TRIGGER");
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "eventPlayer")
         {
             ChangeToPlayerPos();
         }

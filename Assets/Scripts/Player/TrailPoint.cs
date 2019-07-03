@@ -17,10 +17,9 @@ public class TrailPoint : MonoBehaviour
 
         
         if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D)){
-        	Debug.Log("purificado");
         	Enemy enemy = other.GetComponent<Enemy>();
         	if(enemy != null){
-        		//##ATIVA EFEITO
+        		//Instantiate()
         		enemy.Dano(100);
         	}
         }

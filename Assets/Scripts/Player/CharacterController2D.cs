@@ -12,6 +12,11 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 2)] [SerializeField] private float m_Velocidade = 1;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     
+    //variaveis de hp e dano
+    public int vida = 100;
+    public float coolDmg = 20f;
+    public float coolPrlz = 15f;
+
 
     // componentes
     private Rigidbody2D m_Rigidbody2D;
@@ -19,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
     private TrailRenderer dashTrail = null;
     private Collision coll;
     public GameObject trailpointprefab;
+    private SpriteRenderer sr;
 
     [Header("Variaveis de posição")]
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -48,6 +54,7 @@ public class CharacterController2D : MonoBehaviour
     public bool m_sepcialfull;
     //public bool m_Grounded;
     public bool canMove;
+    public bool ivenDmg;
     public bool onWall;
     public bool onRightWall;
     public bool onLeftWall;
@@ -84,7 +91,7 @@ public class CharacterController2D : MonoBehaviour
 
 
 
-
+  
 
 
     private void Awake()
@@ -98,6 +105,8 @@ public class CharacterController2D : MonoBehaviour
         dashTrail.emitting = false;
         m_special = maxDash;
         m_sepcialfull = true;
+        canMove = true;
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -120,7 +129,7 @@ public class CharacterController2D : MonoBehaviour
                 
         #endif
 */      
-        if (Input.GetButtonDown("Jump") & (coll.onGround || coll.onWall) )
+        if (Input.GetButtonDown("Jump") & (coll.onGround || coll.onWall) & canMove )
         {
             animControl.SetTrigger("pulou");
             m_Pulou = true;
@@ -132,7 +141,7 @@ public class CharacterController2D : MonoBehaviour
         
         
         
-        if(Input.GetButton("Fire2") && (movimento != 0 || yDash != 0 ) && !m_DashCool && !coll.onWall) 
+        if(Input.GetButton("Fire2") && (movimento != 0 || yDash != 0 ) && !m_DashCool && !coll.onWall && canMove) 
         {                                                         
             
             
@@ -165,8 +174,10 @@ public class CharacterController2D : MonoBehaviour
         }
         else
         {
-           
-            Move(movimento * m_Velocidade, false, m_Pulou);
+            if(canMove){
+                Move(movimento * m_Velocidade, false, m_Pulou);
+            }
+            
         }
         animControl.SetFloat("velocidadeMov", movimento);
         animControl.SetFloat("velocidadeVertical", m_Rigidbody2D.velocity.y);
@@ -191,6 +202,32 @@ public class CharacterController2D : MonoBehaviour
     private void FixedUpdate()
     {
        
+
+        // calculos referentes a vida
+        
+        if(ivenDmg){
+            //Debug.Log("estou invencivel");
+            coolDmg -= 0.25f;
+            if(coolDmg == 0){
+                coolDmg = 20f;
+                ivenDmg = false;
+                Color temp = sr.color;
+                temp.a = 1f;
+                sr.color = temp;
+            }
+        }
+        
+
+
+        if(!canMove){
+             coolPrlz -= 0.5f;
+             if(coolPrlz == 0){
+                coolPrlz = 15f;
+                canMove = true;
+             }
+        }
+
+
         // calculos referentes ao dash
         // esta no modo dash  e nao esta no "modo infinito"
         if(m_Dash && !dashInfinity){
@@ -214,9 +251,6 @@ public class CharacterController2D : MonoBehaviour
 
 
         // calculos referentes a queda(gravidade)
-        //float xRaw = Input.GetAxisRaw("Horizontal");
-
-
             // se esta grudado em alguma parede (na parede e no ar e indo em direção a ela)
             if(coll.onWall && !coll.onGround && Input.GetAxisRaw("Horizontal") != 0){   
                         WallSlide();
@@ -242,11 +276,54 @@ public class CharacterController2D : MonoBehaviour
 
 
 
+    void OnTriggerEnter2D(Collider2D other){
+        // se ele nao esta no delay(invencibilidade) 
+        if(!ivenDmg){
+            // e é um penro nao esta dando dash
+            if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D) && !m_Dash){
+                Vector2 dir = other.attachedRigidbody.velocity;
+                Dano(30,dir);
+                
+            }
+            else
+            {
+                // ele esta dando dash (fica invencivel e ainda pode recarregar a barra de especial)
+                if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D)){
+                    Debug.Log("ABSOOOORVE");
+                    m_special = m_special + 4f;
+                }
+            }
+            // é um beta e nao esta dando dash 
+            if(other.tag.Equals("Beta") && other.GetType() != typeof(CircleCollider2D) && !m_Dash){
+                Vector2 dir = other.attachedRigidbody.velocity;
+                Dano(45,dir);
+            }
 
-
+            // nao fica invencivel a tiros (apesar da trail proteger ele)
+            // a nao ser que esteja no delay pós dano
+            if(other.name.Equals("enemyBullet(Clone)")){
+                Debug.Log("OUCH");
+                Vector2 dir = other.attachedRigidbody.velocity;
+                Dano(30,dir);
+            }
+        }
+    }
 
 
     // funções auxiliares
+
+    public void Dano(int dano,Vector2 dir){
+        //empurra o player e deixa ele temporariamente sem se mexer
+        float push = (dir.x > 0)? 10f: -10f;
+        m_Rigidbody2D.velocity = Vector2.zero;
+        m_Rigidbody2D.velocity = new Vector2(push,  0);
+        canMove = false;
+        ivenDmg = true;
+        vida = vida - dano;
+        Color temp = sr.color;
+        temp.a = 0.5f;
+        sr.color = temp;
+    }
 
 
     public void pulo(bool ground, bool wall, bool rightW, bool leftW)
