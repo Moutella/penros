@@ -5033,7 +5033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5280828172528136282}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.8, y: -1.3, z: 0}
   m_LocalScale: {x: 1.281, y: 1.136, z: 1}
   m_Children:
@@ -5128,6 +5128,8 @@ MonoBehaviour:
   m_MovementSmoothing: 0
   m_Velocidade: 0.8
   m_AirControl: 1
+  trailpointprefab: {fileID: 8771447755886333286, guid: c8760530fea864e41ba8a60fa9d54561,
+    type: 3}
   m_FacingRight: 1
   animControl: {fileID: 0}
   fallMult: 2.5
@@ -5148,6 +5150,7 @@ MonoBehaviour:
   m_DashConstSpeed: 18
   maxDash: 30
   dashRecharge: 0.125
+  m_special: 0
 --- !u!50 &5280828172528136280
 Rigidbody2D:
   serializedVersion: 4
