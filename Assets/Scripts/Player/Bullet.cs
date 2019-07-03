@@ -20,8 +20,8 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
 
-        Debug.Log(other.name);
-        Debug.Log(other.GetType());
+        //Debug.Log(other.name);
+        //Debug.Log(other.GetType());
         if(other.GetType() != typeof(CircleCollider2D)){
             Enemy enemy = other.GetComponent<Enemy>(); // as vezes não seria melhor por o trigger no inimigo ?
                                                    //se bem que a bala é trigger ...

@@ -11,14 +11,17 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject enemybulletprefab;
     public GameObject morreueffect;
-    //variaveis
+
+    //variaveis de estado
     public int vida = 100;
     public bool attackMode = false;
     public bool vendo = false;
+    public float coolDown = 2f;
     public float modeDuration = 60f;
     public float moveSpeed = 20f;
     public float shootSpeed = 20f;
     public int shootCaden;
+    public bool shootLock;
     //private enum Acao{ padrao, movatac, tiro };
     public  int  acaoescolhida;
 

@@ -15,5 +15,12 @@ public class EnemyBullet : MonoBehaviour
     {
         
     }
-    // fazer on trigger depis
+ 
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.name.Equals("Player") || other.name.Equals("trailpointprefab(Clone)")){
+            Destroy(gameObject); // bala inimiga acertou algo (escudo de trail ou player)
+        }
+        
+        
+    }
 }

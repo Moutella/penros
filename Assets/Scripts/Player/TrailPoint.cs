@@ -9,23 +9,22 @@ public class TrailPoint : MonoBehaviour
 
     void Start()
     {
-        //Destroy(gameObject,time);
+        Destroy(gameObject,time);
     	// comentado para debug (nunca some)
     }
 
     void OnTriggerEnter2D(Collider2D other){
 
-        //Debug.Log(other.name);
-        //Debug.Log(other.GetType());
+        
         if(other.name.Equals("Inimigo-Octopus") && other.GetType() != typeof(CircleCollider2D)){
-        	Debug.Log(other.name);
+        	Debug.Log("purificado");
         }
 
 
         // trail com função de escudo! (note que por enquanto nao fiz o tiro dos inimigos então estou testando com os do player)
         // FUNCIONA tem que só trocar para o nome do projetil inimigo
-        if(other.name.Equals("Bullet(Clone)")){
-        	Destroy(other);
+        if(other.name.Equals("enemyBullet(Clone)")){
+        	//Destroy(other);
         	Destroy(gameObject);
         }
 
@@ -44,9 +43,9 @@ public class TrailPoint : MonoBehaviour
         
     }
     void OnTriggerStay2D(Collider2D other){
-    	//Debug.Log(other.name);
+    	
     	if(other.name.Equals("Inimigo-Octopus") && other.GetType() != typeof(CircleCollider2D)){
-        	Debug.Log(other.name);
+        	Debug.Log("purificado");
         }
     }
 }

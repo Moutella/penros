@@ -17,15 +17,24 @@ public class AirEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        //ModeUpdate();
-        //EscolheAcao();
-        acaoescolhida = 2;
+        EscolheAcao();
+        if(coolDown == 2f){
+        	shootLock = false;
+        }
+        else{
+        	coolDown = coolDown - 0.1f;
+        	if(coolDown < 0){
+        		coolDown = 2f;
+        	}
+        }
+        
         if(acaoescolhida == 1 && vendo){
         	DirectTackle();
         }
-        if(acaoescolhida == 2 && attackMode){
-        	Debug.Log("ei");
+        if(acaoescolhida == 2 && attackMode && !shootLock){
         	Shoot();
+        	shootLock = true;
+        	coolDown = coolDown - 0.1f;
         }
         /*
         else{
