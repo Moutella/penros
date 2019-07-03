@@ -69,7 +69,7 @@ public class CharacterController2D : MonoBehaviour
     [Space]
 
     [Header("Variaveis da barra de especial")]
-    private float m_special;  
+    public float m_special;  
 
 //    [Space]
 
