@@ -5019,6 +5019,7 @@ GameObject:
   - component: {fileID: 5280828172528136280}
   - component: {fileID: 5280828172528136281}
   - component: {fileID: 5280828172528136259}
+  - component: {fileID: 1291364538}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5212,3 +5213,19 @@ MonoBehaviour:
   bottomOffset: {x: -0.04, y: -1.89}
   rightOffset: {x: 0.51, y: 0}
   leftOffset: {x: -0.74, y: 0}
+--- !u!58 &1291364538
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5280828172528136282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5
