@@ -4,35 +4,53 @@ using UnityEngine;
 
 public class droneController : MonoBehaviour
 {
-    public Vector3 currentDesiredPos;
+    public Transform currentDesiredTransform;
     public float droneVelo;
     public List<Transform> posicoesDroneNoMundo;
     public Transform playerFollowPos;
     private int currentPosIndex;
+    private float distancia;
 
     // Start is called before the first frame update
     void Start()
     {
         currentPosIndex = 0;
-        currentDesiredPos = posicoesDroneNoMundo[0].position;
+        currentDesiredTransform = posicoesDroneNoMundo[0].transform;
+        distancia = Vector3.Distance(transform.position, currentDesiredTransform.position);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, currentDesiredPos, droneVelo);
+        transform.position = Vector3.Lerp(transform.position, currentDesiredTransform.position, droneVelo);
     }
 
     void GoToNextDesiredSpot()
     {
-        currentDesiredPos = posicoesDroneNoMundo[currentPosIndex].position;
+        currentDesiredTransform = posicoesDroneNoMundo[currentPosIndex];
+        distancia = Vector3.Distance(transform.position, currentDesiredTransform.position);
     }
     void ChangeToPlayerPos()
     {
-        currentDesiredPos = playerFollowPos.position;
+        currentDesiredTransform = playerFollowPos;
+        distancia = Vector3.Distance(transform.position, currentDesiredTransform.position);
     }
     void goToSpecificPos(Transform objeto)
     {
-        currentDesiredPos = objeto.position;
+        currentDesiredTransform = objeto.transform;
+        distancia = Vector3.Distance(transform.position, currentDesiredTransform.position);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("ENTROU NUM TRIGGER");
+        if (collision.gameObject.tag == "Player")
+        {
+            ChangeToPlayerPos();
+        }
+        if(collision.gameObject.tag == "droneDesiredPos")
+        {
+            goToSpecificPos(collision.gameObject.transform);
+        }
+    }
+    
 }
