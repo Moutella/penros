@@ -12,6 +12,7 @@ TagManager:
   - Gate
   - Penro
   - droneDesiredPos
+  - eventPlayer
   layers:
   - Default
   - TransparentFX
