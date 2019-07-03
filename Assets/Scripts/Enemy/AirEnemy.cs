@@ -52,7 +52,7 @@ public class AirEnemy : Enemy
 
     
     void OnTriggerEnter2D(Collider2D other){
-    	if(other.name.Equals("Player")){
+    	if(other.name.Equals("Player") && !other.isTrigger){
     		//#ATIVA EFEITO VE O JOGADOR
     		SwitchMode();
     		Debug.Log("TO TE VENDO FILHO DA PUTA");
@@ -61,14 +61,16 @@ public class AirEnemy : Enemy
     }
 
     void OnTriggerStay2D(Collider2D other){
-    	if(other.name.Equals("Player")){
+    	if(other.name.Equals("Player") && !other.isTrigger)
+        {
     		//vendo = true;
     		StayMode();
     	}
     }
 
     void OnTriggerExit2D(Collider2D other){
-    	if(other.name.Equals("Player")){
+    	if(other.name.Equals("Player") && !other.isTrigger)
+        {
     		vendo = false;
     		
     	}
