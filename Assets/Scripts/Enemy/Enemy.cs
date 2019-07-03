@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
     // retorna vetor em direção ao jogador
     protected Vector2 PersegueJogador(){
         GameObject jogador = GameObject.Find("Player");
-        if(jogador != null){
+        if(jogador != null && Vector3.Distance(transform.position, jogador.transform.position) > 2){
             Vector3 pe = transform.position;
             Vector3 pp = jogador.transform.position;
             rb.velocity = Vector2.zero;
