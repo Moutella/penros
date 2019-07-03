@@ -25,7 +25,7 @@ public class portalTrocaFase : MonoBehaviour
         if(!collision.isTrigger)
         {
             Debug.Log("PLAYER ENTROU");
-            if (CenaASerCarregada != null)
+            if (!CenaASerCarregada.Equals(""))
             {
                 SceneManager.LoadScene(CenaASerCarregada);
             }
