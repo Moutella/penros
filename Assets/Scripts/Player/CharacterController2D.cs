@@ -387,5 +387,5 @@ public class CharacterController2D : MonoBehaviour
         canMove = true;
     }
     */
-
+    
 }
