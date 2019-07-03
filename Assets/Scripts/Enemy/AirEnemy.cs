@@ -4,58 +4,60 @@ using UnityEngine;
 
 public class AirEnemy : Enemy
 {
-    // Start is called before the first frame update
    
-    
-    /*
-    void Start()
-    {
-        //rb = GetComponent<Rigidbody2D>();
-    }
-    */
+   	//public float offsetradio;
 
     // Update is called once per frame
     void Update()
     {
+        
+
         EscolheAcao();
-        if(coolDown == 2f){
+        if(coolDown == 11f){
+        	// libera locks
         	shootLock = false;
-        }
-        else{
+        	//moveLock = false;
+        	
+        }else{
         	coolDown = coolDown - 0.1f;
-        	if(coolDown < 0){
-        		coolDown = 2f;
+        	if(coolDown <= 0){
+        		coolDown = 11f;
         	}
         }
         
+
+        // ações do mob
+        /*
+        if(acaoescolhida == 0 && !attackMode){
+        	DefaultMove();
+        	coolDown = coolDown - 0.1f;
+        }
+		*/  // descartado
+
         if(acaoescolhida == 1 && vendo){
         	DirectTackle();
         }
         if(acaoescolhida == 2 && attackMode && !shootLock){
         	Shoot();
-        	shootLock = true;
         	coolDown = coolDown - 0.1f;
+        	shootLock = true;
+        
         }
-        /*
-        else{
-        	if(acaoescolhida == 1){
-        		acaoescolhida == 
-        	}
-        }
-        */
+       
     }
 
     void FixedUpdate(){
     	ModeUpdate(); 
     }
 
-    // tentando fazer ele colidir com a TRAIL!
+    
     void OnTriggerEnter2D(Collider2D other){
     	if(other.name.Equals("Player")){
-    		// ativa efeito (vi o jogador)
+    		//#ATIVA EFEITO VE O JOGADOR
     		SwitchMode();
     		Debug.Log("TO TE VENDO FILHO DA PUTA");
-    	}	
+    	}
+    	
     }
 
     void OnTriggerStay2D(Collider2D other){
@@ -72,5 +74,17 @@ public class AirEnemy : Enemy
     	}
     }
 
-    // move (um movimento padrão que ele fica fazendo enquanto não ataca) (ele eventualmente RANDOM pode fazer esse movimento também mesmo em modo de ataque)
+    /*
+    private void DefaultMove(){
+    	
+    	float x; 
+    	x = (originalpos.x != transform.position.x && moveLock)? (originalpos.x-transform.position.x) + Random.Range(0,offsetradio)  : Random.Range(0, 10);
+    	float y; 
+    	y = (originalpos.y != transform.position.y && moveLock)? (originalpos.y-transform.position.y) + Random.Range(0,offsetradio) : Random.Range(0, 10);
+    	Vector2 dir = new Vector2(x,y).normalized;
+    	rb.velocity = dir*(moveSpeed);
+    	//Flip();
+    	
+    }
+    */
 }

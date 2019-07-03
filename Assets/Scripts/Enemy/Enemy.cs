@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
     // devem herdar esse!
 
     // componentes
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sr;
     public GameObject enemybulletprefab;
     public GameObject morreueffect;
+    protected ParticleSystem shootParticles = null;
 
     //variaveis de estado
     public int vida = 100;
@@ -18,12 +20,17 @@ public class Enemy : MonoBehaviour
     public bool vendo = false;
     public float coolDown = 2f;
     public float modeDuration = 60f;
-    public float moveSpeed = 20f;
-    public float shootSpeed = 20f;
+    public float moveSpeed = 5;
+    public float shootSpeed = 15f;
     public int shootCaden;
     public bool shootLock;
+    public bool moveLock;
     //private enum Acao{ padrao, movatac, tiro };
     public  int  acaoescolhida;
+
+
+    //auxiliar 
+    protected Vector2 originalpos;
 
     public void Dano(int dano){
         vida -= dano;
@@ -35,6 +42,11 @@ public class Enemy : MonoBehaviour
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        originalpos = transform.position;
+        //esses efeitos nao ficaram legais nesse mob
+        //shootParticles =  GetComponentInChildren<ParticleSystem>();
+        //shootParticles.enableEmission = false; 
     }
 
     protected void Die(){
@@ -47,6 +59,7 @@ public class Enemy : MonoBehaviour
             modeDuration = modeDuration - 0.1f;
             if(modeDuration <= 0){
                 SwitchMode();
+                originalpos = transform.position;
                 Debug.Log("tO DE BOA");
             }
         }
@@ -65,7 +78,7 @@ public class Enemy : MonoBehaviour
 
     protected void EscolheAcao(){
         if(attackMode){
-            int r = Random.Range(0, 3);
+            int r = Random.Range(1, 3);
             acaoescolhida = r;
         }
         else{
@@ -92,6 +105,9 @@ public class Enemy : MonoBehaviour
         Vector2 dir = PersegueJogador();
         if(dir != Vector2.zero){
             rb.velocity = dir*(moveSpeed);
+            Flip();
+            
+            
         }    
             
     }
@@ -108,8 +124,18 @@ public class Enemy : MonoBehaviour
                 GameObject tiroinimigo = Instantiate(enemybulletprefab,transform.position,transform.rotation) as GameObject;
                 tiroinimigo.GetComponent<Rigidbody2D>().velocity = dir*shootSpeed;
             }        
-        }     
-    }  
+        }
+             
+    } 
+
+    protected void Flip(){
+        if( ((rb.velocity.x) < 0) && sr.flipX){
+            sr.flipX = !sr.flipX;
+        }
+        if(!sr.flipX && ((rb.velocity.x) > 0) ){
+            sr.flipX = !sr.flipX;
+        }
+    } 
     
 }
 
