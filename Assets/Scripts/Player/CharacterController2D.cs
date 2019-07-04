@@ -336,7 +336,7 @@ public class CharacterController2D : MonoBehaviour
         //empurra o player e deixa ele temporariamente sem se mexer
         float push = (dir.x > 0)? 10f: -10f;
         m_Rigidbody2D.velocity = Vector2.zero;
-        m_Rigidbody2D.velocity = new Vector2(push,  0);
+        m_Rigidbody2D.velocity = new Vector2(push,  0)/2;
         canMove = false;
         ivenDmg = true;
         vida = vida - dano;

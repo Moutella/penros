@@ -15,6 +15,7 @@ TagManager:
   - eventPlayer
   - Beta
   - Espinho
+  - dronePlayerPos
   layers:
   - Default
   - TransparentFX
