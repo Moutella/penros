@@ -148,18 +148,20 @@ public class CharacterController2D : MonoBehaviour
             
                
             // ativou efeitos
-            if(!second){
-                dashParticles.enableEmission = true;
-                dashTrail.emitting = true;
-            }
+            
+            dashParticles.enableEmission = true;
+            dashTrail.emitting = true;
+            
 
-            if(dashInfinity){
-                second = true;
-            } 
+            //if(dashInfinity){
+            //    second = true;
+            //} 
         
             if(m_special == maxDash){
                 Camera.main.transform.DOComplete();
-                Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
+                if (!dashInfinity) { 
+                    Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
+                }
                 FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));
             }
             if(movimento < 0  && m_FacingRight){

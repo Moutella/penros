@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
 
         //Debug.Log(other.name);
         //Debug.Log(other.GetType());
-        if(other.GetType() != typeof(CircleCollider2D)){
+        if((other.GetType() != typeof(CircleCollider2D)) && other.gameObject.tag != "droneDesiredPos"){
             Enemy enemy = other.GetComponent<Enemy>(); // as vezes não seria melhor por o trigger no inimigo ?
                                                    //se bem que a bala é trigger ...
             // note que os inimigos vao ter 2 colliders triggers (campo de visão e o hitbox normal)

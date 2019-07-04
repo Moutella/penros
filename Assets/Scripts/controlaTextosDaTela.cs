@@ -31,7 +31,8 @@ public class controlaTextosDaTela : MonoBehaviour
             {
                 //Debug.Log(Time.time - Morreu);
                 if(SceneManager.GetActiveScene().name.Equals("Level1")){
-                    player.transform.position = new Vector3(-31.15f,32.67f,0f);    
+                    player.transform.position = new Vector3(-31.15f,32.67f,0f);
+                    player.dashInfinity = false;
                 }
                 else
                 {
