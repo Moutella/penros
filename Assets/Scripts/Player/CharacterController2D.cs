@@ -289,7 +289,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 // ele esta dando dash (fica invencivel e ainda pode recarregar a barra de especial)
                 if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D)){
-                    Debug.Log("ABSOOOORVE");
                     m_special = m_special + 4f;
                 }
             }
@@ -302,15 +301,15 @@ public class CharacterController2D : MonoBehaviour
             // nao fica invencivel a tiros (apesar da trail proteger ele)
             // a nao ser que esteja no delay pós dano
             if(other.name.Equals("enemyBullet(Clone)")){
-                Debug.Log("OUCH");
                 Vector2 dir = other.attachedRigidbody.velocity;
                 Dano(10,dir);
             }
-            if (other.name.Equals("Espinho"))
-            {
-                Debug.Log("OUCH");
-                Dano(100, new Vector2(0,0));
-            }
+           
+        }
+        if (other.name.Equals("Espinho"))
+        {
+                
+            Dano(100, new Vector2(0,0));
         }
     }
 
