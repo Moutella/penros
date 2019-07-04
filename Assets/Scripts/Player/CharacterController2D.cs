@@ -282,7 +282,7 @@ public class CharacterController2D : MonoBehaviour
             // e é um penro nao esta dando dash
             if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D) && !m_Dash){
                 Vector2 dir = other.attachedRigidbody.velocity;
-                Dano(30,dir);
+                Dano(25,dir);
                 
             }
             else
@@ -296,7 +296,7 @@ public class CharacterController2D : MonoBehaviour
             // é um beta e nao esta dando dash 
             if(other.tag.Equals("Beta") && other.GetType() != typeof(CircleCollider2D) && !m_Dash){
                 Vector2 dir = other.attachedRigidbody.velocity;
-                Dano(45,dir);
+                Dano(25,dir);
             }
 
             // nao fica invencivel a tiros (apesar da trail proteger ele)
@@ -304,7 +304,8 @@ public class CharacterController2D : MonoBehaviour
             if(other.name.Equals("enemyBullet(Clone)")){
                 Debug.Log("OUCH");
                 Vector2 dir = other.attachedRigidbody.velocity;
-                Dano(30,dir);
+                Dano(10,dir);
+                Debug.Break();
             }
         }
     }

@@ -15,7 +15,7 @@ public class controlaTextosDaTela : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        textosNaTela[0].SetText("VIDA");
+        textosNaTela[0].SetText("PV: " + Mathf.Clamp(player.vida, 0, 100));
         if (player.m_special>25)
         {
             textosNaTela[1].color = new Color(255, 255, 0, 255);
