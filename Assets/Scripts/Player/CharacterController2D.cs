@@ -306,6 +306,11 @@ public class CharacterController2D : MonoBehaviour
                 Vector2 dir = other.attachedRigidbody.velocity;
                 Dano(10,dir);
             }
+            if (other.name.Equals("Espinho"))
+            {
+                Debug.Log("OUCH");
+                Dano(100, new Vector2(0,0));
+            }
         }
     }
 
