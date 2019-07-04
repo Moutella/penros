@@ -17,6 +17,7 @@ public class droneController : MonoBehaviour
         currentPosIndex = 0;
         currentDesiredTransform = posicoesDroneNoMundo[0].transform;
         distancia = Vector3.Distance(transform.position, currentDesiredTransform.position);
+        playerFollowPos = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame

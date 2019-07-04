@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer sr;
     public GameObject enemybulletprefab;
     public GameObject morreueffect;
-    protected ParticleSystem shootParticles = null;
+
 
     //variaveis de estado
     public int vida = 100;
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     }
 
     protected void Die(){
-        //Instantiate(morreueffect,transform.position, Quaternion.identity);
+        Instantiate(morreueffect,transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

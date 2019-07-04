@@ -29,12 +29,23 @@ public class controlaTextosDaTela : MonoBehaviour
             gameover.SetActive(true);
             if (Time.time >= (Morreu + 3f))
             {
-                Debug.Log(Time.time - Morreu);
+                //Debug.Log(Time.time - Morreu);
+                if(SceneManager.GetActiveScene().name.Equals("Level1")){
+                    player.transform.position = new Vector3(-31.15f,32.67f,0f);    
+                }
+                else
+                {
+                    player.transform.position = new Vector3(0f,0f,0f);
+                }
+                player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                player.vida = 100;
+                gameover.SetActive(false);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                
             }
         }
         textosNaTela[0].SetText("PV: " + Mathf.Clamp(player.vida, 0, 100));
-        if (player.m_special>16.66666f)
+        if (player.m_special>25)
         {
             textosNaTela[1].color = new Color(255, 255, 0, 255);
         }
@@ -46,7 +57,7 @@ public class controlaTextosDaTela : MonoBehaviour
         {
             textosNaTela[1].color = new Color(0, 255, 0, 255);
         }
-        string dashStatus = "DASH: " + (Mathf.CeilToInt(player.m_special * 3.33f)).ToString() + "%";
+        string dashStatus = "SP: " + (Mathf.CeilToInt(player.m_special * 3.33f)).ToString() + "%";
         textosNaTela[1].SetText(dashStatus);
     }
 }

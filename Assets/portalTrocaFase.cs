@@ -27,6 +27,14 @@ public class portalTrocaFase : MonoBehaviour
             Debug.Log("PLAYER ENTROU");
             if (!CenaASerCarregada.Equals(""))
             {
+               
+                GameObject player = GameObject.Find("Player");
+                Debug.Log(player.transform.position);
+                player.transform.position = Vector3.zero;
+                Debug.Log(player.transform.position);
+                CharacterController2D ctrl = player.GetComponent<CharacterController2D>();
+                ctrl.dashInfinity = false;
+                ctrl.vida = 100;
                 SceneManager.LoadScene(CenaASerCarregada);
             }
         }

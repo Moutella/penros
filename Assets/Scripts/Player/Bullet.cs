@@ -27,7 +27,13 @@ public class Bullet : MonoBehaviour
                                                    //se bem que a bala é trigger ...
             // note que os inimigos vao ter 2 colliders triggers (campo de visão e o hitbox normal)
             if(enemy != null){
-                enemy.Dano(damage);
+                if(other.tag.Equals("Beta")){
+                    enemy.Dano(damage/2);
+                }
+                else{
+                  enemy.Dano(damage);  
+                }
+                
 
             }
             Destroy(gameObject);

@@ -19,12 +19,12 @@ public class TrailPoint : MonoBehaviour
         if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D)){
         	Enemy enemy = other.GetComponent<Enemy>();
         	if(enemy != null){
-        		//Instantiate()
         		enemy.Dano(100);
         	}
         }
         if(other.tag.Equals("Beta") && other.GetType() != typeof(CircleCollider2D)){
-        	//Enemy enemy = other.GetComponent<Enemy>();
+        	Enemy enemy = other.GetComponent<Enemy>();
+        	enemy.moveSpeed *= -0.5f;
         }
 
 

@@ -52,6 +52,8 @@ public class CharacterController2D : MonoBehaviour
     public bool m_DashCool = false;
     public bool dashInfinity = false;
     public bool m_sepcialfull;
+    private bool second = false;
+    public bool triple = false;
     //public bool m_Grounded;
     public bool canMove;
     public bool ivenDmg;
@@ -144,11 +146,17 @@ public class CharacterController2D : MonoBehaviour
         if(Input.GetButton("Fire2") && (movimento != 0 || yDash != 0 ) && !m_DashCool && !coll.onWall && canMove) 
         {                                                         
             
-            
+               
             // ativou efeitos
-            dashParticles.enableEmission = true;
-            dashTrail.emitting = true;
-            
+            if(!second){
+                dashParticles.enableEmission = true;
+                dashTrail.emitting = true;
+            }
+
+            if(dashInfinity){
+                second = true;
+            } 
+        
             if(m_special == maxDash){
                 Camera.main.transform.DOComplete();
                 Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
@@ -179,6 +187,8 @@ public class CharacterController2D : MonoBehaviour
             }
             
         }
+        animControl.SetBool("hurt",false);
+        animControl.SetBool("m_dash",m_Dash);
         animControl.SetFloat("velocidadeMov", movimento);
         animControl.SetFloat("velocidadeVertical", m_Rigidbody2D.velocity.y);
         animControl.SetBool("isGrounded", coll.onGround);
@@ -242,6 +252,9 @@ public class CharacterController2D : MonoBehaviour
             }
 
         }
+        if(dashInfinity){
+            m_special = maxDash;
+        }
         if(!this.m_sepcialfull){
             m_DashCool = true;
             specialrecharge();
@@ -288,8 +301,9 @@ public class CharacterController2D : MonoBehaviour
             else
             {
                 // ele esta dando dash (fica invencivel e ainda pode recarregar a barra de especial)
-                if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D)){
-                    m_special = m_special + 4f;
+                if(other.tag.Equals("Penro") && other.GetType() != typeof(CircleCollider2D) && m_Dash){
+                    Debug.Log("AAAAAA");
+                    m_special = m_special + 10f;
                 }
             }
             // é um beta e nao esta dando dash 
@@ -306,7 +320,7 @@ public class CharacterController2D : MonoBehaviour
             }
            
         }
-        if (other.name.Equals("Espinho"))
+        if (other.tag.Equals("Espinho"))
         {
                 
             Dano(100, new Vector2(0,0));
@@ -327,6 +341,7 @@ public class CharacterController2D : MonoBehaviour
         Color temp = sr.color;
         temp.a = 0.5f;
         sr.color = temp;
+        animControl.SetBool("hurt",true);
     }
 
 
