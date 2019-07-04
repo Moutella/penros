@@ -400,7 +400,7 @@ public class CharacterController2D : MonoBehaviour
         if(this.m_special < maxDash){
             this.m_special += dashRecharge;
         }
-        if(this.m_special >= 25){
+        if(this.m_special >= 16.6666f){
             this.m_DashCool = false;
         }
         if(this.m_special >= maxDash){
