@@ -305,7 +305,6 @@ public class CharacterController2D : MonoBehaviour
                 Debug.Log("OUCH");
                 Vector2 dir = other.attachedRigidbody.velocity;
                 Dano(10,dir);
-                Debug.Break();
             }
         }
     }
